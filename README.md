@@ -16,16 +16,19 @@ WWT provides a series of labs that make the process of learning and testing Open
 **F5 Red Hat OpenShift Lab**
 
 Lab Link: https://www.wwt.com/lab/f5-red-hat-openshift-lab
+
 Lab Guide: http://labs.wwtlab.net/lab-guides/openshift_dev_workshop/welcome.html
 
 **Red Hat OpenShift 101 Lab**
 
 Lab Link: https://www.wwt.com/lab/openshift-101-lab
+
 Lab Guide: https://labs.wwtatc.com/lab-guides/openshift-cicd-demo/module_1/intro.html
 
 **Red Hat OpenShift CI/CD Lab**
 
 Lab Link: https://www.wwt.com/lab/openshift-cicd-lab
+
 Lab Guide: https://labs.wwtatc.com/lab-guides/openshift-cicd-demo/module_1/intro.html
 
 ## Related Blogs and Videos
