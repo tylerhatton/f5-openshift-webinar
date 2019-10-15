@@ -1,0 +1,62 @@
+---
+- name: Perform F5 configurations
+  hosts: bigip-a.example.com
+  connection: local
+  gather_facts: no
+  vars:
+    partition_name: openshift
+    vxlan_tunn_name: openshift-vxlan
+    vxlan_local_addr: 192.168.2.205
+    openshift_self_ip: 10.130.0.15
+    as3_rpm_location: "{{playbook_dir}}/files/f5-appsvcs-3.13.2-1.noarch.rpm"
+    provider:
+      server: "{{ inventory_hostname }}"
+      user: admin
+      password: admin
+      validate_certs: no
+  tasks:
+  - name: Create BIG-IP paritition for OpenShift
+    bigip_partition:
+      name: "{{ partition_name }}"
+      provider: "{{ provider }}"
+  - name: Create BIG-IP VXLAN tunnel for OpenShift
+    bigip_tunnel:
+      name: "{{ vxlan_tunn_name }}"
+      local_address: "{{ vxlan_local_addr }}"
+      profile: vxlan-ovsdb-multipoint
+      mtu: 1600
+      provider: "{{ provider }}"
+  - name: Create BIG-IP Self IP for OpenShift
+    bigip_selfip:
+      name: openshift-self
+      address: "{{ openshift_self_ip }}"
+      netmask: 255.252.0.0
+      vlan: "{{ vxlan_tunn_name }}"
+      allow_service:
+        - all
+      provider: "{{ provider }}"
+  - name: Install AS3 Package
+    bigip_iapplx_package:
+      package: "{{ as3_rpm_location }}"
+      provider: "{{ provider }}"
+
+- name: Perform OpenShift Configurations
+  hosts: ocp-node1.example.com
+  connection: local
+  gather_facts: no
+  vars:
+    oc_url: "{{ inventory_hostname }}:{{ oc_port }}"
+    oc_user: admin
+    oc_pass: WWTwwt1!
+  pre_tasks:
+  - name: Log into OpenShift
+    shell: oc login {{ oc_url }} -u {{ oc_user }} -p {{ oc_pass }} --insecure-skip-tls-verify
+  tasks:
+  - name: Create secret for BIG-IP login
+    shell: oc apply -f manifests/bigip-ctlr-secret.yaml -n kube-system
+  - name: Create BIG-IP Controller serviceaccount
+    shell: oc apply -f manifests/bigip-ctlr-rbac.yaml -n kube-system
+  - name: Create hostsubnet for VXLAN tunnel
+    shell: oc apply -f manifests/bigip-ctlr-hostsubnet.yaml -n kube-system
+  - name: Deploy BIG-IP Controller
+    shell: oc apply -f manifests/bigip-ctlr-deployment.yaml -n kube-system

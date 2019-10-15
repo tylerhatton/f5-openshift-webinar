@@ -5,6 +5,7 @@
 F5 Container Ingress Services integrated with Red Hat OpenShift can provide security, scalability, and availability of containerized applications in an enterprise environment. With application development and deployment methods changing, monolithic applications are a thing of the past while containers and microservices are on the rise. New application architectures add new complexities for engineers and developers. Learn how to simplify and accelerate the application development lifecycle, how F5 Container Ingress Services can help your organization scale and secure containers, and how Ansible can automate the configuration process with Infrastructure as Code.
 
 Webinar Link: https://www.brighttalk.com/webcast/17822/372663
+
 Webinar Slides: [link](slides/OpenShift-Webinar-Slides.pdf)
 
 ## Labs
