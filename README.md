@@ -18,7 +18,7 @@ WWT provides a series of labs that make the process of learning and testing Open
 
 Lab Link: https://www.wwt.com/lab/f5-red-hat-openshift-lab
 
-Lab Guide: http://labs.wwtlab.net/lab-guides/openshift_dev_workshop/welcome.html
+Lab Guide: https://labs.wwtatc.com/lab-guides/f5-openshift-lab-guide/welcome.html
 
 **Red Hat OpenShift 101 Lab**
 
@@ -30,7 +30,7 @@ Lab Guide: https://labs.wwtatc.com/lab-guides/openshift-cicd-demo/module_1/intro
 
 Lab Link: https://www.wwt.com/lab/openshift-cicd-lab
 
-Lab Guide: https://labs.wwtatc.com/lab-guides/openshift-cicd-demo/module_1/intro.html
+Lab Guide: https://labs.wwtatc.com/lab-guides/openshift_dev_workshop/welcome.html
 
 ## Related Blogs and Videos
 
